@@ -28,27 +28,29 @@
 		 */
 		private string $title = '';
 		
-		/** State in which the item is.
+		/** The state in which the item is
 		 *
-		 * @ORM\Column(type="text")
+		 *@ORM\ManyToOne(targetEntity="App\Entity\State", inversedBy="states")
+		 * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
 		 */
-		private string $state = 'to_do';
+		private State|null $state = null;
 		
 		/**
-		 * @return string
+		 * @return State
 		 */
-		public function getState(): string
+		public function getState(): State
 		{
 			return $this->state;
 		}
 		
 		/**
-		 * @param string $state
+		 * @param State $state
 		 */
-		public function setState(string $state): void
+		public function setState(State $state): void
 		{
 			$this->state = $state;
 		}
+		
 		
 		/**
 		 * @return int|null
